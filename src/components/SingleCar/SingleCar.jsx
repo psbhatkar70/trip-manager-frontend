@@ -90,7 +90,6 @@ function SingleCar() {
   >
     <div style={{ width: "100%", maxWidth: "700px" }}>
       
-      {/* Car Title */}
       <h1
         style={{
           fontSize: "32px",
@@ -104,7 +103,6 @@ function SingleCar() {
         {car.name}
       </h1>
 
-      {/* Car Details Card */}
       <div
         style={{
           padding: "25px",
@@ -142,7 +140,6 @@ function SingleCar() {
         </p>
       </div>
 
-      {/* Trips Title */}
       <h3
         style={{
           fontSize: "22px",
@@ -155,7 +152,6 @@ function SingleCar() {
         Trips by this Car
       </h3>
 
-      {/* Trip Cards */}
       <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
         {trips.map((trip) => (
           <div

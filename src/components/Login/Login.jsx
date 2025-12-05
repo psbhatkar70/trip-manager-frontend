@@ -31,7 +31,6 @@ const handlegotoSignup=()=>{
     
  return (
     <>
-      {/* Inline CSS inside component */}
       <style>{`
         .login-container {
           min-height: 100vh;
@@ -105,7 +104,6 @@ const handlegotoSignup=()=>{
         }
       `}</style>
 
-      {/* UI */}
       <div className="login-container">
         <div className="login-card">
 
@@ -113,13 +111,11 @@ const handlegotoSignup=()=>{
         <button className="signup-btn" onClick={handlegotoSignup}>
         Sign Up
       </button>
-          {/* Email */}
           <div className="input-group">
             <label htmlFor="email">Enter your email</label>
             <input type="text" id="email" ref={emailRef} />
           </div>
 
-          {/* Password */}
           <div className="input-group">
             <label htmlFor="password">Enter your Password</label>
 
@@ -139,7 +135,6 @@ const handlegotoSignup=()=>{
             </div>
           </div>
 
-          {/* Button */}
           <button className="login-btn" onClick={handleLogin}>
             Log In
           </button>

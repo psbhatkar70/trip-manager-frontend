@@ -17,11 +17,9 @@ api.interceptors.request.use(function(config){
 function(error){
     if (error.response && error.response.status === 401) {
       console.log("Token expired or invalid. Logging out...");
-      
-      // 1. Delete the bad token
+     
       localStorage.removeItem('trip-access-token');
       
-      // 2. Force reload to kick user back to Login (The PrivateRoute will handle the rest)
       window.location.href = '/'; 
     }
     return Promise.reject(error);

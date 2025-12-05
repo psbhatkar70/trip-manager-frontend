@@ -21,11 +21,6 @@ function App() {
 
  <Routes>
         
-        {/* =======================================================
-            PUBLIC ROUTES
-            (Accessible ONLY if you are NOT logged in)
-            If logged in, these redirect to /home automatically.
-           ======================================================= */}
         <Route 
           path="/" 
           element={
@@ -44,11 +39,6 @@ function App() {
           } 
         />
 
-        {/* =======================================================
-            PRIVATE ROUTES
-            (Accessible ONLY if you ARE logged in)
-            If not logged in, these redirect to / automatically.
-           ======================================================= */}
         <Route 
           path="/home" 
           element={
@@ -121,11 +111,6 @@ function App() {
           } 
         />
 
-        {/* =======================================================
-            CATCH-ALL ROUTE
-            If user types a random URL (e.g. /abracadabra),
-            redirect them to the root page.
-           ======================================================= */}
         <Route path="*" element={<Navigate to="/" replace />} />
 
       </Routes>

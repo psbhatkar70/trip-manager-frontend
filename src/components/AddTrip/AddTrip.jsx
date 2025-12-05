@@ -54,7 +54,6 @@ function AddTrip() {
  },[]);
    
 
-  // --- put styles BEFORE the return ---
 const inputStyle = {
   width: "100%",
   padding: "12px 15px",
@@ -100,7 +99,6 @@ const infoStyle = {
   color: "#e2e2e2"
 };
 
-// --- then the return (no changes to your logic) ---
 return (
   <div
     style={{
