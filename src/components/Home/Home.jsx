@@ -89,10 +89,10 @@ return (
         <span className="home-icon">🧭</span>
       </button>
 
-      <button className="home-btn" onClick={handlegotoupcomingtrip}>
+      {/* <button className="home-btn" onClick={handlegotoupcomingtrip}>
         <span>Upcoming Trips</span>
         <span className="home-icon">📅</span>
-      </button>
+      </button> */}
 
       <button className="home-btn" onClick={handlegototripstats}>
         <span>Trip Stats</span>

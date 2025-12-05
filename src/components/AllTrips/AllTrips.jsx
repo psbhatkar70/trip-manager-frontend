@@ -9,6 +9,7 @@ function AllTrips() {
             const res = await api.get('/trips');
             console.log(res)
             setTrips(res.data.data.trips);
+            
             setLoading(false);
         }
         getalltrips();
@@ -75,6 +76,14 @@ function AllTrips() {
             <p style={{ marginBottom: "8px" }}>
               <strong style={{ color: "#b79cff" }}>Car Used:</strong>{" "}
               {trip.name}
+            </p>
+            <p style={{ marginBottom: "8px" }}>
+              <strong style={{ color: "#b79cff" }}>Trip Date:</strong>{" "}
+              {trip.TripDate}
+            </p>
+            <p style={{ marginBottom: "8px" }}>
+              <strong style={{ color: "#b79cff" }}>Trip Created:</strong>{" "}
+              {trip.date}
             </p>
             <p style={{ marginBottom: "8px" }}>
               <strong style={{ color: "#b79cff" }}>Car Number:</strong>{" "}

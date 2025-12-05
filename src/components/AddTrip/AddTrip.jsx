@@ -1,8 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
 import api from '../../axios/api';
 import { useNavigate } from 'react-router-dom';
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
+
 
 function AddTrip() {
+  const [date,setDate]=useState();
     const [myCars, setMyCars] = useState([]);
     const [selectedCar, setSelectedCar] = useState(null);
     const [cost,setCost]=useState(0);
@@ -19,8 +25,9 @@ function AddTrip() {
       const car =selectedCar._id;
       const distance = distRef.current.value;
       const TripName = nameRef.current.value;
+      const TripDate=date;
      try {
-       const res =await api.post('/trips',{ car , distance , TripName});
+       const res =await api.post('/trips',{ car , distance , TripName , TripDate});
       alert("Trip created Successfully");
       navigate('/home');
 
@@ -188,6 +195,16 @@ return (
           <p style={{ marginTop: "10px", fontSize: "16px", fontWeight: "500" }}>
             Total Cost: {cost}
           </p>
+           <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <div style={{ width: 300, margin: "50px auto" }}>
+        <DatePicker
+         disablePast
+          label="Select a date"
+          value={date}
+          onChange={(newValue) => setDate(newValue)}
+        />
+      </div>
+    </LocalizationProvider>
         </div>
       )}
 
@@ -198,6 +215,7 @@ return (
         Create Trip
       </button>
     </div>
+    
   </div>
 );
 
