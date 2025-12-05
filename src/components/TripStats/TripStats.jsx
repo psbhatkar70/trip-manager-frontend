@@ -3,17 +3,20 @@ import api from '../../axios/api';
 
 function TripStats() {
   const [trips,setTrips]=useState([]);
-
+   const [loading,setLoading]=useState(true);
   useEffect(()=>{
         const getalltrips=async ()=>{
             const res = await api.get('/trips/stats');
             console.log(res)
             setTrips(res.data.data.stats);
-            
+            setLoading(false);
         }
         getalltrips();
     }
     ,[])
+
+ if(loading) return <h1>Wait</h1>
+
 return (
   <>
     <h1 style={{ textAlign: "center", marginBottom: "20px" }}>

@@ -4,21 +4,71 @@ import { Link } from 'react-router-dom';
 
 function MyCars() {
 const [myCars, setMyCars] = useState([]);
-    
+    const [loading,setLoading]=useState(true);
     useEffect(()=>{
         const fetchCars = async () => {
     try {
       const res = await api.get('/cars');
       setMyCars(res.data.data.cars);
       console.log(res.data.data.cars);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
   fetchCars();
  },[]);
-    
+ 
+ if (loading){
+  return (
+    <div
+      style={{
+        height: "100vh",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+        background: "#f5f7fa",
+      }}
+    >
+      <div
+        style={{
+          width: "60px",
+          height: "60px",
+          borderRadius: "50%",
+          border: "6px solid #d0d7de",
+          borderTopColor: "#4a90e2",
+          animation: "spin 1s linear infinite",
+        }}
+      />
+
+      <p
+        style={{
+          marginTop: "16px",
+          fontSize: "18px",
+          fontWeight: 500,
+          color: "#555",
+        }}
+      >
+        Loading, please wait...
+      </p>
+
+      <style>
+        {`
+          @keyframes spin {
+            to {
+              transform: rotate(360deg);
+            }
+          }
+        `}
+      </style>
+    </div>
+  );
+ }
+
  return (
   <>
     <style>{`

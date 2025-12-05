@@ -154,6 +154,7 @@ return (
           background: "rgba(255,255,255,0.12)"
         }}
       >
+        <option value="">Select</option>
         {myCars.map((cars) => (
           <option key={cars._id} value={cars._id} style={{ color: "#000" }}>
             {cars.name}
@@ -205,15 +206,16 @@ return (
         />
       </div>
     </LocalizationProvider>
-        </div>
-      )}
-
-      <button
+    <button
         onClick={handleCreateTrip}
         style={primaryButton}
       >
         Create Trip
       </button>
+        </div>
+      )}
+
+      
     </div>
     
   </div>
