@@ -54,91 +54,110 @@ function AddTrip() {
  },[]);
    
 
+const container = {
+  minHeight: "100vh",
+  background: "linear-gradient(135deg, #0d0d0f, #1a1a1d)",
+  padding: "40px 20px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "flex-start",
+  color: "#fff",
+  fontFamily: "Inter, sans-serif"
+};
+
+const card = {
+  width: "100%",
+  maxWidth: "520px",
+  background: "rgba(255,255,255,0.06)",
+  padding: "32px",
+  borderRadius: "20px",
+  boxShadow: "0 12px 40px rgba(0,0,0,0.45)",
+  backdropFilter: "blur(14px)",
+  border: "1px solid rgba(255,255,255,0.08)"
+};
+
+const labelStyle = {
+  fontSize: "14px",
+  marginBottom: "6px",
+  display: "block",
+  color: "#eaeaea",
+  fontWeight: 500
+};
+
 const inputStyle = {
   width: "100%",
-  padding: "12px 15px",
-  margin: "6px 0 15px 0",
-  borderRadius: "10px",
-  border: "1px solid rgba(255,255,255,0.2)",
-  background: "rgba(255,255,255,0.1)",
+  padding: "12px 14px",
+  marginBottom: "18px",
+  borderRadius: "12px",
+  border: "1px solid rgba(255,255,255,0.18)",
+  background: "rgba(255,255,255,0.12)",
   color: "#fff",
   outline: "none",
-  fontSize: "15px"
+  fontSize: "15px",
+  transition: "0.25s",
+  boxSizing: "border-box"   
+};
+
+const selectStyle = {
+  ...inputStyle,
+  cursor: "pointer",
 };
 
 const primaryButton = {
-  marginTop: "20px",
+  marginTop: "22px",
   width: "100%",
   padding: "14px",
-  borderRadius: "12px",
-  background: "linear-gradient(135deg, #6a5af9, #8364ff)",
+  borderRadius: "14px",
+  background: "linear-gradient(135deg, #7b5df6, #9a78ff)",
   border: "none",
   color: "#fff",
-  fontWeight: "600",
-  fontSize: "16px",
+  fontWeight: 600,
+  fontSize: "17px",
   cursor: "pointer",
-  transition: "0.3s"
+  transition: "0.3s",
+  boxShadow: "0 6px 18px rgba(128,90,255,0.4)"
 };
 
 const secondaryButton = {
-  marginTop: "12px",
+  marginTop: "10px",
   width: "100%",
-  padding: "10px",
-  borderRadius: "10px",
-  background: "rgba(255,255,255,0.12)",
+  padding: "12px",
+  borderRadius: "12px",
+  background: "rgba(255,255,255,0.14)",
   border: "1px solid rgba(255,255,255,0.2)",
   color: "#fff",
-  fontWeight: "500",
+  fontWeight: 500,
   cursor: "pointer",
   transition: "0.3s"
 };
 
-const infoStyle = {
-  marginBottom: "8px",
+const infoBox = {
+  marginTop: "22px",
+  padding: "16px",
+  borderRadius: "16px",
+  background: "rgba(255,255,255,0.08)",
+  boxShadow: "0 6px 20px rgba(0,0,0,0.25)",
+  border: "1px solid rgba(255,255,255,0.1)"
+};
+
+const infoText = {
+  marginBottom: "10px",
   fontSize: "15px",
-  color: "#e2e2e2"
+  color: "#f0f0f0b3"
 };
 
 return (
-  <div
-    style={{
-      minHeight: "100vh",
-      background: "linear-gradient(135deg, #0f0f0f, #1a1a1a)",
-      padding: "40px",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "flex-start",
-      color: "#fff",
-      fontFamily: "Inter, sans-serif"
-    }}
-  >
-    <div
-      style={{
-        width: "100%",
-        maxWidth: "500px",
-        background: "rgba(255,255,255,0.05)",
-        padding: "30px",
-        borderRadius: "18px",
-        boxShadow: "0 8px 25px rgba(0,0,0,0.4)",
-        backdropFilter: "blur(12px)"
-      }}
-    >
-      <h2 style={{ marginBottom: "20px", fontWeight: "600", color: "#e9e9e9" }}>
+  <div style={container}>
+    <div style={card}>
+      <h2 style={{ marginBottom: "18px", fontWeight: "600", color: "#f5f5f5" }}>
         Create a New Trip
       </h2>
 
-      <label htmlFor="name" style={{ fontSize: "14px" }}>Enter name of trip</label>
-      <input
-        type="text"
-        id="name"
-        ref={nameRef}
-        style={inputStyle}
-      />
+    
+      <label htmlFor="name" style={labelStyle}>Enter Trip Name</label>
+      <input type="text" id="name" ref={nameRef} style={inputStyle} />
 
-      <label htmlFor="car" style={{ fontSize: "14px", marginTop: "12px" }}>
-        Select your car
-      </label>
-
+      <label htmlFor="car" style={labelStyle}>Select Your Car</label>
       <select
         name="car"
         id="car"
@@ -146,11 +165,7 @@ return (
           const car = myCars.find(c => c._id === e.target.value);
           setSelectedCar(car);
         }}
-        style={{
-          ...inputStyle,
-          cursor: "pointer",
-          background: "rgba(255,255,255,0.12)"
-        }}
+        style={selectStyle}
       >
         <option value="">Select</option>
         {myCars.map((cars) => (
@@ -161,63 +176,43 @@ return (
       </select>
 
       {selectedCar && (
-        <div
-          style={{
-            marginTop: "20px",
-            padding: "15px",
-            borderRadius: "14px",
-            background: "rgba(255,255,255,0.08)",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.2)"
-          }}
-        >
-          <p style={infoStyle}>Price per KM: {selectedCar.pricePerKm}</p>
-          <p style={infoStyle}>Driver Cost: {selectedCar.driverCost}</p>
+        <div style={infoBox}>
+          <p style={infoText}>Price per KM: <b>{selectedCar.pricePerKm}</b></p>
+          <p style={infoText}>Driver Cost: <b>{selectedCar.driverCost}</b></p>
 
-          <label htmlFor="distance" style={{ fontSize: "14px" }}>
-            Enter total distance of trip (Km)
+          <label htmlFor="distance" style={labelStyle}>
+            Enter Total Distance (Km)
           </label>
+          <input type="number" id="distance" ref={distRef} style={inputStyle} />
 
-          <input
-            type="number"
-            id="distance"
-            ref={distRef}
-            style={inputStyle}
-          />
-
-          <button
-            onClick={handleCost}
-            style={secondaryButton}
-          >
+          <button onClick={handleCost} style={secondaryButton}>
             Calculate Cost
           </button>
 
-          <p style={{ marginTop: "10px", fontSize: "16px", fontWeight: "500" }}>
+          <p style={{ marginTop: "14px", fontSize: "16px", fontWeight: 500 }}>
             Total Cost: {cost}
           </p>
-           <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <div style={{ width: 300, margin: "50px auto" }}>
-        <DatePicker
-         disablePast
-          label="Select a date"
-          value={date}
-          onChange={(newValue) => setDate(newValue)}
-        />
-      </div>
-    </LocalizationProvider>
-    <button
-        onClick={handleCreateTrip}
-        style={primaryButton}
-      >
-        Create Trip
-      </button>
+
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <div style={{ marginTop: "20px" }}>
+              <DatePicker
+                disablePast
+                label="Select a date"
+                value={date}
+                onChange={(newValue) => setDate(newValue)}
+              />
+            </div>
+          </LocalizationProvider>
+
+          <button onClick={handleCreateTrip} style={primaryButton}>
+            Create Trip
+          </button>
         </div>
       )}
-
-      
     </div>
-    
   </div>
 );
+
 
 }
 
