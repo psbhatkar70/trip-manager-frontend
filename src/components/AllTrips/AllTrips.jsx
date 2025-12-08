@@ -17,7 +17,10 @@ function AllTrips() {
     ,[])
 
 
-if (loading){
+// ----------------------
+// White/premium Loader
+// ----------------------
+if (loading) {
   return (
     <div
       style={{
@@ -27,7 +30,7 @@ if (loading){
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        background: "#f5f7fa",
+        background: "#f8f9fc",
       }}
     >
       <div
@@ -35,8 +38,8 @@ if (loading){
           width: "60px",
           height: "60px",
           borderRadius: "50%",
-          border: "6px solid #d0d7de",
-          borderTopColor: "#4a90e2",
+          border: "6px solid #e6e9ee",
+          borderTopColor: "#111", // premium black accent
           animation: "spin 1s linear infinite",
         }}
       />
@@ -44,9 +47,9 @@ if (loading){
       <p
         style={{
           marginTop: "16px",
-          fontSize: "18px",
+          fontSize: "17px",
           fontWeight: 500,
-          color: "#555",
+          color: "#444",
         }}
       >
         Loading, please wait...
@@ -55,36 +58,38 @@ if (loading){
       <style>
         {`
           @keyframes spin {
-            to {
-              transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
           }
         `}
       </style>
     </div>
   );
- }
-  return (
+}
+
+// ----------------------
+// Trips Page (White Premium Theme)
+// ----------------------
+return (
   <div
     style={{
       minHeight: "100vh",
-      background: "linear-gradient(135deg, #0d0d0d, #1b1b1b)",
+      background: "#fafafa",
       padding: "40px 20px",
       fontFamily: "Inter, sans-serif",
-      color: "#fff",
+      color: "#111",
       display: "flex",
-      justifyContent: "center"
+      justifyContent: "center",
     }}
   >
-    <div style={{ width: "100%", maxWidth: "700px" }}>
+    <div style={{ width: "100%", maxWidth: "900px" }}>
       <h1
         style={{
           fontSize: "28px",
-          fontWeight: "700",
+          fontWeight: 700,
           marginBottom: "25px",
           textAlign: "center",
-          color: "#f1f1f1",
-          letterSpacing: "0.5px"
+          color: "#111",
+          letterSpacing: "0.2px",
         }}
       >
         Your Trips
@@ -96,59 +101,43 @@ if (loading){
             key={trip._id}
             style={{
               padding: "20px",
-              borderRadius: "16px",
-              background: "rgba(255,255,255,0.06)",
-              backdropFilter: "blur(8px)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              boxShadow: "0 6px 20px rgba(0,0,0,0.35)",
-              transition: "0.3s",
-              cursor: "pointer"
+              borderRadius: "12px",
+              background: "#ffffff",
+              border: "1px solid #eceff2",
+              boxShadow: "0 6px 18px rgba(15,15,15,0.04)",
+              transition: "transform 0.18s ease, box-shadow 0.18s ease",
+              cursor: "pointer",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-4px)";
-              e.currentTarget.style.boxShadow =
-                "0 10px 25px rgba(0,0,0,0.45)";
+              e.currentTarget.style.transform = "translateY(-6px)";
+              e.currentTarget.style.boxShadow = "0 12px 30px rgba(15,15,15,0.08)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translateY(0px)";
-              e.currentTarget.style.boxShadow =
-                "0 6px 20px rgba(0,0,0,0.35)";
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "0 6px 18px rgba(15,15,15,0.04)";
             }}
           >
-            <p style={{ marginBottom: "8px", fontSize: "16px" }}>
-              <strong style={{ color: "#b79cff" }}>Trip Name:</strong>{" "}
+            <p style={{ marginBottom: "8px", fontSize: "16px", fontWeight: 600 }}>
               {trip.TripName}
             </p>
-            <p style={{ marginBottom: "8px" }}>
-              <strong style={{ color: "#b79cff" }}>Car Used:</strong>{" "}
-              {trip.name}
-            </p>
-            <p style={{ marginBottom: "8px" }}>
-              <strong style={{ color: "#b79cff" }}>Trip Date:</strong>{" "}
-              {trip.TripDate}
-            </p>
-            <p style={{ marginBottom: "8px" }}>
-              <strong style={{ color: "#b79cff" }}>Trip Created:</strong>{" "}
-              {trip.date}
-            </p>
-            <p style={{ marginBottom: "8px" }}>
-              <strong style={{ color: "#b79cff" }}>Car Number:</strong>{" "}
-              {trip.number}
-            </p>
-            <p style={{ marginBottom: "8px" }}>
-              <strong style={{ color: "#b79cff" }}>Total Distance:</strong>{" "}
-              {trip.distance} km
-            </p>
-            <p style={{ fontSize: "17px", marginTop: "5px" }}>
-              <strong style={{ color: "#b79cff" }}>Total Earnings:</strong> ₹
-              {trip.cost}
-            </p>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", fontSize: "14px", color: "#333" }}>
+              <div><strong>Car Used:</strong> {trip.name}</div>
+              <div><strong>Car Number:</strong> {trip.number}</div>
+
+              <div><strong>Trip Date:</strong> {trip.TripDate}</div>
+              <div><strong>Trip Created:</strong> {trip.date}</div>
+
+              <div><strong>Total Distance:</strong> {trip.distance} km</div>
+              <div><strong>Total Earnings:</strong> ₹{trip.cost}</div>
+            </div>
           </div>
         ))}
       </div>
     </div>
   </div>
 );
+
 
 }
 

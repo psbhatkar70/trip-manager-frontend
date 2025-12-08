@@ -25,92 +25,121 @@ function Home() {
     }
 return (
   <>
-    <style>{`
-      body {
-        background: #ddd8d8ff; /* Premium dark background */
-      }
+    <div className="home-container">
 
-      .home-container {
-        max-width: 450px;
-        margin: 0 auto;
-        padding: 40px 20px;
-      }
+      <div className="home-card">
 
-      .home-btn {
-        width: 100%;
-        padding: 18px 20px;
-        background: rgba(255, 255, 255, 0.04);
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 16px;
-        color: #000000ff;
-        font-size: 18px;
-        font-weight: 500;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 22px;
-        transition: 0.25s ease-in-out;
-      }
+        <h1 className="home-title">Trip Manager</h1>
 
-      .home-btn:hover {
-        background: rgba(255, 255, 255, 0.10);
-        border-color: rgba(255, 255, 255, 0.25);
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-      }
+        <button className="home-btn" onClick={handlegotoaddcar}>
+          <span>Add Car</span>
+          <span className="home-icon">🚗</span>
+        </button>
 
-      .home-icon {
-        font-size: 22px;
-        color: #d4a857; /* Gold Premium Color */
-      }
+        <button className="home-btn" onClick={handlegotoaddtrip}>
+          <span>Add Trip</span>
+          <span className="home-icon">🧭</span>
+        </button>
 
-      @media (max-width: 480px) {
-        .home-btn {
-          padding: 16px 16px;
-          font-size: 16px;
+        <button className="home-btn" onClick={handlegototripstats}>
+          <span>Trip Stats</span>
+          <span className="home-icon">📊</span>
+        </button>
+
+        <button className="home-btn" onClick={handlegotomycars}>
+          <span>My Cars</span>
+          <span className="home-icon">🚗</span>
+        </button>
+
+        <button className="home-btn" onClick={handlegotoalltrips}>
+          <span>All Trips</span>
+          <span className="home-icon">📋</span>
+        </button>
+
+      </div>
+    </div>
+
+    <style>
+      {`
+        .home-container {
+          min-height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #f5f5f5; /* same as login page */
+          padding: 20px;
         }
+
+        .home-card {
+          background: white;
+          padding: 32px;
+          border-radius: 16px;
+          max-width: 420px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+          animation: fadeIn 0.4s ease;
+        }
+
+        .home-title {
+          text-align: center;
+          font-size: 26px;
+          font-weight: 700;
+          margin-bottom: 10px;
+          color: #333;
+        }
+
+        .home-btn {
+          width: 100%;
+          padding: 14px;
+          background: #000000ff;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border: none;
+          border-radius: 12px;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background 0.2s, transform 0.1s;
+        }
+
+        .home-btn:hover {
+          background: #686769ff;
+        }
+
+        .home-btn:active {
+          transform: scale(0.97);
+        }
+
         .home-icon {
           font-size: 20px;
         }
-      }
-    `}</style>
 
-    <div className="home-container">
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
 
-      <button className="home-btn" onClick={handlegotoaddcar}>
-        <span>Add Car</span>
-        <span className="home-icon">🚗</span>
-      </button>
-
-      <button className="home-btn" onClick={handlegotoaddtrip}>
-        <span>Add Trip</span>
-        <span className="home-icon">🧭</span>
-      </button>
-
-      {/* <button className="home-btn" onClick={handlegotoupcomingtrip}>
-        <span>Upcoming Trips</span>
-        <span className="home-icon">📅</span>
-      </button> */}
-
-      <button className="home-btn" onClick={handlegototripstats}>
-        <span>Trip Stats</span>
-        <span className="home-icon">📊</span>
-      </button>
-      <button className="home-btn" onClick={handlegotomycars}>
-        <span>My Cars</span>
-        <span className="home-icon">🚗</span>
-      </button>
-
-      <button className="home-btn" onClick={handlegotoalltrips}>
-        <span>All Trips</span>
-        <span className="home-icon">📊</span>
-      </button>
-
-    </div>
+        @media (max-width: 480px) {
+          .home-card {
+            padding: 26px;
+          }
+          .home-title {
+            font-size: 22px;
+          }
+          .home-btn {
+            font-size: 15px;
+          }
+        }
+      `}
+    </style>
   </>
 );
+
 
 }
 

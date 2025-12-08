@@ -21,7 +21,10 @@ const [myCars, setMyCars] = useState([]);
   fetchCars();
  },[]);
  
- if (loading){
+// ----------------------
+// Elegant Loader (Same Style)
+// ----------------------
+if (loading) {
   return (
     <div
       style={{
@@ -31,7 +34,7 @@ const [myCars, setMyCars] = useState([]);
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        background: "#f5f7fa",
+        background: "#f8f9fc",
       }}
     >
       <div
@@ -39,8 +42,8 @@ const [myCars, setMyCars] = useState([]);
           width: "60px",
           height: "60px",
           borderRadius: "50%",
-          border: "6px solid #d0d7de",
-          borderTopColor: "#4a90e2",
+          border: "6px solid #e1e4e8",
+          borderTopColor: "#111",
           animation: "spin 1s linear infinite",
         }}
       />
@@ -48,9 +51,9 @@ const [myCars, setMyCars] = useState([]);
       <p
         style={{
           marginTop: "16px",
-          fontSize: "18px",
+          fontSize: "17px",
           fontWeight: 500,
-          color: "#555",
+          color: "#444",
         }}
       >
         Loading, please wait...
@@ -67,106 +70,77 @@ const [myCars, setMyCars] = useState([]);
       </style>
     </div>
   );
- }
+}
 
- return (
+// ----------------------
+// Cars Page (Premium White UI)
+// ----------------------
+return (
   <>
-    <style>{`
-      body {
-        background: #111;
-        margin: 0;
-        padding: 0;
-        font-family: 'Inter', sans-serif;
-      }
-
-      .cars-container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 30px 20px;
-      }
-
-      .cars-heading {
-        color: #f1f1f1;
-        font-size: 32px;
-        font-weight: 600;
-        margin-bottom: 30px;
-        text-align: center;
-      }
-
-      .car-card {
-        background: rgba(255, 255, 255, 0.04);
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 18px;
-        padding: 20px;
-        margin-bottom: 22px;
-        transition: 0.25s ease-in-out;
-        color: #e6e6e6;
-        text-decoration: none;
-        display: block;
-      }
-
-      .car-card:hover {
-        border-color: rgba(255, 255, 255, 0.25);
-        background: rgba(255, 255, 255, 0.08);
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-      }
-
-      .car-title {
-        font-size: 22px;
-        font-weight: 600;
-        margin-bottom: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .car-icon {
-        font-size: 24px;
-        color: #d4a857; /* Luxury gold */
-      }
-
-      .car-info p {
-        margin: 6px 0;
-        font-size: 16px;
-        opacity: 0.85;
-      }
-
-      @media (max-width: 480px) {
-        .car-title {
-          font-size: 20px;
-        }
-        .car-card {
-          padding: 16px;
-        }
-      }
-    `}</style>
-
-    <div className="cars-container">
-      <h1 className="cars-heading">Your Cars</h1>
+    <div
+      className="cars-container"
+      style={{
+        maxWidth: "650px",
+        margin: "0 auto",
+        padding: "20px",
+      }}
+    >
+      <h1
+        className="cars-heading"
+        style={{
+          textAlign: "center",
+          marginBottom: "22px",
+          color: "#111",
+          fontWeight: 600,
+        }}
+      >
+        Your Cars
+      </h1>
 
       {myCars.map((cars) => (
-        <Link to={`/cars/${cars._id}`} key={cars._id} className="car-card">
-          
-          <div className="car-title">
+        <Link
+          to={`/cars/${cars._id}`}
+          key={cars._id}
+          className="car-card"
+          style={{
+            display: "block",
+            padding: "18px",
+            borderRadius: "14px",
+            background: "#ffffff",
+            border: "1px solid #e5e7eb",
+            boxShadow: "0 4px 14px rgba(0,0,0,0.06)",
+            marginBottom: "18px",
+            textDecoration: "none",
+            color: "#111",
+          }}
+        >
+          <div
+            className="car-title"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              fontSize: "18px",
+              fontWeight: 600,
+              marginBottom: "10px",
+            }}
+          >
             <span>{cars.name}</span>
             <span className="car-icon">🚗</span>
           </div>
 
-          <div className="car-info">
+          <div className="car-info" style={{ fontSize: "15px", lineHeight: "22px" }}>
             <p><strong>Car Number:</strong> {cars.carNumber}</p>
             <p><strong>Driver Cost per Trip:</strong> ₹{cars.driverCost}</p>
             <p><strong>Price per Km:</strong> ₹{cars.pricePerKm}</p>
             <p><strong>Total Distance:</strong> {cars.distanceTravelled} km</p>
             <p><strong>Total Earnings:</strong> ₹{cars.totalEarning}</p>
           </div>
-
         </Link>
       ))}
     </div>
   </>
 );
+
 
 }
 
