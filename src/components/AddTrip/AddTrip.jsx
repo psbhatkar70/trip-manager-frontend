@@ -9,6 +9,8 @@ import dayjs from "dayjs";
 
 function AddTrip() {
   const [date,setDate]=useState();
+  const [isoDate, setIsoDate] = useState();
+  const [daystoadd,setDaystoadd]=useState(0);
     const [myCars, setMyCars] = useState([]);
     const [selectedCar, setSelectedCar] = useState(null);
     const [cost,setCost]=useState(0);
@@ -24,12 +26,19 @@ function AddTrip() {
     const handleCreateTrip=async ()=>{
       if(addingtrip) return;
       setAddingtrip(true);
+     try {
       const car =selectedCar._id;
       const distance = distRef.current.value;
       const TripName = nameRef.current.value;
-      const TripDate=date;
-     try {
-       const res =await api.post('/trips',{ car , distance , TripName , TripDate});
+      const TripDate=date.toISOString();
+      const newdate = new Date(date);
+      newdate.setDate(newdate.getDate() + daystoadd);
+
+// End date
+      const TripDateEnd = newdate.toISOString();
+      console.log(TripDate);
+      console.log(TripDateEnd);
+      const res =await api.post('/trips',{ car , distance , TripName , TripDate , TripDateEnd});
       alert("Trip created Successfully");
       navigate('/home');
       setAddingtrip(false);
@@ -200,6 +209,17 @@ return (
               />
             </div>
           </LocalizationProvider>
+
+          <label htmlFor="">Select no of days it would take for the trip</label>
+          <select value={daystoadd}
+            onChange={(event) => setDaystoadd(Number(event.target.value))}
+            >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
 
           <button onClick={handleCreateTrip} style={primaryButton}>
             Create Trip

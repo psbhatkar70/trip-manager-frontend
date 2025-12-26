@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import api from '../../axios/api';
+import dayjs from 'dayjs';
 
 function SingleCar() {
     const { _id }=useParams();
@@ -203,11 +204,14 @@ return (
                 </div>
 
                 <div>
-                  <strong>Trip Date:</strong> <span>{trip.TripDate}</span>
+                  <strong>Trip Date:</strong> <span>{dayjs(trip.TripDate).format("DD-MM-YYYY")}</span>
+                </div>
+                <div>
+                  <strong>Trip End Date:</strong> <span>{dayjs(trip.TripDateEnd).format("DD-MM-YYYY")}</span>
                 </div>
 
                 <div>
-                  <strong>Created:</strong> <span>{trip.date}</span>
+                  <strong>Created:</strong> <span>{dayjs(trip.date).format("DD-MM-YYYY")}</span>
                 </div>
 
                 <div>
@@ -216,6 +220,9 @@ return (
 
                 <div>
                   <strong>Total Earnings:</strong> <span>₹{trip.cost}</span>
+                </div>
+                <div>
+                  <strong>Status:</strong> <span>{trip.completed  ? <p>Completed</p> : <p>Pending for {dayjs(trip.TripDate).format("DD-MM-YYYY")}</p>}</span>
                 </div>
               </div>
             </div>

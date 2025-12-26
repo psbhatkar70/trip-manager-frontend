@@ -44,7 +44,7 @@ function SignUp() {
 
   try {
 
-    const res = await api.post('/user/login',{ email: "pravin@gmail.com", password: "Pass1234" });
+    const res = await api.post('/user/login',{ email: "pravin1@gmail.com", password: "Pass1234" });
     localStorage.setItem('trip-access-token', res.data.token);
     localStorage.setItem("trip-user", JSON.stringify(res.data.user));
     navigate('/home');

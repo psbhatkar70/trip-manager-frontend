@@ -2,7 +2,12 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function Home() {
-  
+  const handleLogout = () => {
+  localStorage.removeItem("trip-access-token"); 
+  localStorage.removeItem("trip-user");
+
+  window.location.href = '/login'; 
+};
   const navigate = useNavigate();
   const handlegotoaddcar= ()=>{
         navigate('/addcar')
@@ -56,11 +61,18 @@ return (
           <span className="home-icon">📋</span>
         </button>
 
+
+        <button className="logout-btn " onClick={handleLogout}>
+          <span>LOG OUT</span>
+          <span className="home-icon">📋</span>
+        </button>
+
       </div>
     </div>
 
     <style>
       {`
+       
         .home-container {
           min-height: 100vh;
           display: flex;
@@ -112,6 +124,29 @@ return (
         }
 
         .home-btn:active {
+          transform: scale(0.97);
+        }
+          .logout-btn {
+          width: 100%;
+          padding: 14px;
+          background: #ff0000ff;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border: none;
+          border-radius: 12px;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background 0.2s, transform 0.1s;
+        }
+
+        .logout-btn:hover {
+          background: #593b3bff;
+        }
+
+        .logout-btn:active {
           transform: scale(0.97);
         }
 

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../axios/api';
+import dayjs from 'dayjs';
 
 function AllTrips() {
     const [trips,setTrips]=useState([]);
     const [loading,setLoading]=useState(true);
+    // dayjs(existingtrip.TripDate).format("DD-MM-YYYY")
+    
     useEffect(()=>{
         const getalltrips=async ()=>{
             const res = await api.get('/trips');
@@ -17,9 +20,6 @@ function AllTrips() {
     ,[])
 
 
-// ----------------------
-// White/premium Loader
-// ----------------------
 if (loading) {
   return (
     <div
@@ -66,9 +66,6 @@ if (loading) {
   );
 }
 
-// ----------------------
-// Trips Page (White Premium Theme)
-// ----------------------
 return (
   <div
     style={{
@@ -125,11 +122,14 @@ return (
               <div><strong>Car Used:</strong> {trip.name}</div>
               <div><strong>Car Number:</strong> {trip.number}</div>
 
-              <div><strong>Trip Date:</strong> {trip.TripDate}</div>
-              <div><strong>Trip Created:</strong> {trip.date}</div>
+              <div><strong>Trip Date:</strong> {dayjs(trip.TripDate).format("DD-MM-YYYY")}</div>
+              <div><strong>Trip End Date:</strong> {dayjs(trip.TripDateEnd).format("DD-MM-YYYY")}</div>
+
+              <div><strong>Trip Created:</strong> {dayjs(trip.date).format("DD-MM-YYYY")}</div>
 
               <div><strong>Total Distance:</strong> {trip.distance} km</div>
               <div><strong>Total Earnings:</strong> ₹{trip.cost}</div>
+              <div>{trip.completed  ? <p>Completed</p> : <p>Pending for {dayjs(trip.TripDate).format("DD-MM-YYYY")}</p>}</div>
             </div>
           </div>
         ))}
