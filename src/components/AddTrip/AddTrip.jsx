@@ -33,8 +33,6 @@ function AddTrip() {
       const TripDate=date.toISOString();
       const newdate = new Date(date);
       newdate.setDate(newdate.getDate() + daystoadd);
-
-// End date
       const TripDateEnd = newdate.toISOString();
       console.log(TripDate);
       console.log(TripDateEnd);
@@ -44,7 +42,9 @@ function AddTrip() {
       setAddingtrip(false);
      } catch (error) {
       console.log(error);
-      alert("Error");
+      if(error.status==409){
+        alert(error.response.data.message);
+      };
       setAddingtrip(false);
      }
     }
